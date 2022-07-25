@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { SigleTaskComponent } from './sigle-task/sigle-task.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TasksComponent } from './tasks/tasks.component';
     HeaderComponent,
     FooterComponent,
     TasksComponent,
+    SigleTaskComponent,
   ],
   imports: [
     BrowserModule,
