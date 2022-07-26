@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class TasksComponent implements OnInit {
   tasks: any;
+  error: any;
 
   constructor(private http: HttpClient) { }
 
@@ -17,9 +18,27 @@ export class TasksComponent implements OnInit {
 
   externalRequest(): void {
     this.http.get('http://localhost:8080/api/list')
-    .subscribe((response) => {
-      this.tasks = response;
-      // console.log(response);
+      .subscribe((response) => {
+        this.tasks = response
+      },
+      (error: any) => {
+        this.error = error
+      });
+  }
+
+  update(): void {
+    this.externalRequest();
+  }
+
+  createTask(newName: any): void {
+    const params = {
+      text: newName.value,
+    };
+    console.log(params.text);
+
+    this.http.post('http://localhost:8080/api/list', params).subscribe(response => {
+      this.externalRequest();
+      console.log('Task Created', response);
     });
   }
 }
