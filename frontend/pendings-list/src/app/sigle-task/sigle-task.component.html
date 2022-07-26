@@ -1,10 +1,18 @@
-{{ taskInfo.text }}
+<ng-container *ngIf="!showData">
 
-<span class="tools">
-  <span class="item edit">
-    <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+  {{ taskInfo.text }}
+
+  <span class="tools">
+    <span class="item edit">
+      <i class="glyphicon glyphicon-pencil" aria-hidden="true" (click)="activateEdition()"></i>
+    </span>
+    <span class="item delete">
+      <i class="glyphicon glyphicon-trash" aria-hidden="true" (click)="deleteRecord(taskInfo)"></i>
+    </span>
   </span>
-  <span class="item delete">
-    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-  </span>
-</span>
+</ng-container>
+
+<ng-container *ngIf="showData">
+  <input type="text" class="input-edit" #nameItem>
+  <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true" (click)="taskEdit(taskInfo, nameItem)"></i>
+</ng-container>

@@ -1,5 +1,21 @@
-<ul class="list-unstyled">
-  <li *ngFor="let task of tasks">
-   <app-sigle-task [taskInfo]="task"></app-sigle-task>
-  </li>
-</ul>
+<ng-container *ngIf="!error">
+  <ul class="list-unstyled" *ngIf="tasks && tasks.length > 0">
+    <li *ngFor="let task of tasks">
+      <app-sigle-task [taskInfo]="task" (changeTask)="update()"></app-sigle-task>
+    </li>
+  </ul>
+
+  <ng-container *ngIf="!tasks || tasks.length <= 0">
+    <h1>Empty List</h1>
+  </ng-container>
+
+  <input type="text" #newName>
+  <button (click)="createTask(newName)">Save</button>
+</ng-container>
+
+<div *ngIf="error" class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only"></span>Error Unavailable Aplication
+</div>
+
+
